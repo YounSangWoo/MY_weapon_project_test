@@ -3,6 +3,8 @@ module.exports = {
   extends: ['airbnb', 'prettier', 'prettier/react'],
   parser: 'babel-eslint',
   rules: {
+    'linebreak-style': ['error', require('os').EOL === '\r\n' ? 'windows' : 'unix'],
+    
     'react/jsx-filename-extension': [
       1,
       {
@@ -15,6 +17,7 @@ module.exports = {
         trailingComma: 'es5',
         singleQuote: true,
         printWidth: 100,
+        endOfLine: 'auto',
       },
     ],
     'global-require': 0,

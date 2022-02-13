@@ -1,6 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Text, TouchableOpacity, SafeAreaView, FlatList } from 'react-native';
+import {
+  Text,
+  TouchableOpacity,
+  SafeAreaView,
+  FlatList,
+  View,
+  StyleSheet,
+  ScrollView,
+} from 'react-native';
 import get from 'lodash/get';
 import SocketManager from '../../socketManager';
 import styles from './styles';
@@ -44,19 +52,40 @@ class Home extends React.Component {
     const userName = get(route, 'params.userName', '');
     const { listLiveStream } = this.state;
     return (
-      <SafeAreaView style={styles.container}>
-        <Text style={styles.welcomeText}>Welcome : {userName}</Text>
-        <Text style={styles.title}>List live stream video</Text>
-        <FlatList
-          contentContainerStyle={styles.flatList}
-          data={listLiveStream}
-          renderItem={({ item }) => <LiveStreamCard data={item} onPress={this.onPressCardItem} />}
-          keyExtractor={(item) => item._id}
-        />
-        <TouchableOpacity style={styles.liveStreamButton} onPress={this.onPressLiveStreamNow}>
-          <Text style={styles.textButton}>LiveStream Now</Text>
-        </TouchableOpacity>
-      </SafeAreaView>
+      <View style={styles.container}>
+        {/* header */}
+        <View style={styles.headContainer}>
+          <View style={styles.userSpace}>
+            <Text style={styles.welcomeText}>Welcome : {userName}</Text>
+          </View>
+          <View style={styles.titleList}>
+            <Text style={styles.title}>진행중인 라이브</Text>
+            <Text style={styles.title}>다가오는 라이브</Text>
+            <Text style={styles.title}>지나간 라이브</Text>
+          </View>
+        </View>
+
+        {/* Cardlist */}
+        <View style={{ flex: 10 }}>
+          <FlatList
+            numColumns={2}
+            contentContainerStyle={styles.flatList}
+            data={listLiveStream}
+            renderItem={({ item }) => <LiveStreamCard data={item} onPress={this.onPressCardItem} />}
+            keyExtractor={(item) => item._id}
+          />
+        </View>
+        {/* footer */}
+        <View style={styles.footContainer}>
+          <TouchableOpacity style={styles.liveStreamButton} onPress={this.onPressLiveStreamNow}>
+            <Text style={styles.textButton}>방송 시작</Text>
+          </TouchableOpacity>
+
+          <TouchableOpacity style={styles.logoutButton} onPress>
+            <Text style={styles.textButton}>로그아웃</Text>
+          </TouchableOpacity>
+        </View>
+      </View>
     );
   }
 }

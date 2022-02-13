@@ -23,6 +23,7 @@ class App extends Component {
           <Stack.Screen name="Home" component={Home} />
           <Stack.Screen name="Streamer" component={Streamer} />
           <Stack.Screen name="Viewer" component={Viewer} />
+          {/* <Stack.Screen name="SavedLive" component={SavedLive} /> */}
         </Stack.Navigator>
       </NavigationContainer>
     );
