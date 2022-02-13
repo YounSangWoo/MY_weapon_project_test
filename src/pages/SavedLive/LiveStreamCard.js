@@ -74,21 +74,11 @@ const LiveStreamCard = ({ data, onPress }) => {
   const liveStatus = get(data, 'liveStatus', LIVE_STATUS.PREPARE);
   let statusIcon = null;
   switch (liveStatus) {
-    case LIVE_STATUS.PREPARE:
+    case LIVE_STATUS.FINISH:
       statusIcon = (
-        <Image source={require(`../../assets/ico_wait.png`)} style={styles.statusIcon} />
+        <Image source={require(`../../assets/ico_replay.png`)} style={styles.statusIcon} />
       );
       break;
-    case LIVE_STATUS.ON_LIVE:
-      statusIcon = (
-        <Image source={require(`../../assets/ico_live.png`)} style={styles.onLiveIcon} />
-      );
-      break;
-    // case LIVE_STATUS.FINISH:
-    //   statusIcon = (
-    //     <Image source={require(`../../assets/ico_replay.png`)} style={styles.statusIcon} />
-    //   );
-    //   break;
     default:
       statusIcon = (
         <Image source={require(`../../assets/ico_wait.png`)} style={styles.statusIcon} />

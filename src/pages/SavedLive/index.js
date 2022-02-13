@@ -66,7 +66,7 @@ class Home extends React.Component {
         {/* header */}
         <View style={styles.headContainer}>
           <View style={styles.userSpace}>
-            <Text style={styles.welcomeText}>Welcome : {userName}</Text>
+            <Text style={styles.welcomeText}>여기는 다른페이지 : {userName}</Text>
           </View>
           <View style={styles.titleList}>
             <TouchableOpacity onPress={this.onPressPL}>
