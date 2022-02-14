@@ -21,6 +21,16 @@ class Home extends React.Component {
     });
   }
 
+  onPressLogout = () => {
+    const { route } = this.props;
+    const userName = get(route, 'params.userName', '');
+    const {
+      navigation: { navigate },
+    } = this.props;
+    navigate('Login', { userName });
+  };
+
+
   onPressPL = () => {
     const { route } = this.props;
     const userName = get(route, 'params.userName', '');
@@ -70,7 +80,7 @@ class Home extends React.Component {
           </View>
           <View style={styles.titleList}>
             <TouchableOpacity onPress={this.onPressPL}>
-              <Text style={styles.title}>진행중인 라이브</Text>
+              <Text style={styles.selectedTitle}>진행중인 라이브</Text>
             </TouchableOpacity>
 
             <Text style={styles.title}>다가오는 라이브</Text>
@@ -97,7 +107,7 @@ class Home extends React.Component {
             <Text style={styles.textButton}>방송 시작</Text>
           </TouchableOpacity>
 
-          <TouchableOpacity style={styles.logoutButton} onPress>
+          <TouchableOpacity style={styles.logoutButton} onPress={this.onPressLogout}>
             <Text style={styles.textButton}>로그아웃</Text>
           </TouchableOpacity>
         </View>

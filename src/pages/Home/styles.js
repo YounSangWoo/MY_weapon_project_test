@@ -1,7 +1,4 @@
-import { endsWith } from 'lodash';
-import { StyleSheet, Dimensions } from 'react-native';
-
-const { width: SCREEN_WIDTH } = Dimensions.get('window');
+import { StyleSheet } from 'react-native';
 
 const styles = StyleSheet.create({
   container: {
@@ -33,6 +30,12 @@ const styles = StyleSheet.create({
   },
   title: {
     fontSize: 15,
+    color: 'gray',
+    fontWeight: '700',
+    margin: 10,
+  },
+  selectedTitle: {
+    fontSize: 18,
     color: 'black',
     fontWeight: '700',
     margin: 10,

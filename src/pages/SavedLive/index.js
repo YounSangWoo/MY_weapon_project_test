@@ -5,6 +5,7 @@ import get from 'lodash/get';
 import SocketManager from '../../socketManager';
 import styles from './styles';
 import LiveStreamCard from './LiveStreamCard';
+import { Colors } from 'react-native/Libraries/NewAppScreen';
 
 class Home extends React.Component {
   constructor(props) {
@@ -76,7 +77,7 @@ class Home extends React.Component {
             <Text style={styles.title}>다가오는 라이브</Text>
 
             <TouchableOpacity onPress={this.onPressSL}>
-              <Text style={styles.title}>지나간 라이브</Text>
+              <Text style={styles.selectedTitle}>지나간 라이브</Text>
             </TouchableOpacity>
           </View>
         </View>
