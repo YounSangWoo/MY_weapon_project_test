@@ -5,7 +5,6 @@ import get from 'lodash/get';
 import SocketManager from '../../socketManager';
 import styles from './styles';
 import LiveStreamCard from './LiveStreamCard';
-import { Colors } from 'react-native/Libraries/NewAppScreen';
 
 class Home extends React.Component {
   constructor(props) {
@@ -21,6 +20,15 @@ class Home extends React.Component {
       this.setState({ listLiveStream: data });
     });
   }
+  
+  onPressLogout = () => {
+    const { route } = this.props;
+    const userName = get(route, 'params.userName', '');
+    const {
+      navigation: { navigate },
+    } = this.props;
+    navigate('Login', { userName });
+  };
 
   onPressPL = () => {
     const { route } = this.props;
@@ -98,7 +106,7 @@ class Home extends React.Component {
             <Text style={styles.textButton}>방송 시작</Text>
           </TouchableOpacity>
 
-          <TouchableOpacity style={styles.logoutButton} onPress>
+           <TouchableOpacity style={styles.logoutButton} onPress={this.onPressLogout}>
             <Text style={styles.textButton}>로그아웃</Text>
           </TouchableOpacity>
         </View>

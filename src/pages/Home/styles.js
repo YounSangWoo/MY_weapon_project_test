@@ -1,16 +1,11 @@
 import { StyleSheet } from 'react-native';
-
+import theme from '../Theme/theme';
 const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: 'white',
   },
   // ------header-----------
-  headContainer: {
-    flex: 1.5,
-    backgroundColor: '#ECECEC',
-  },
-
   userSpace: {
     flex: 1,
     flexDirection: 'row',
@@ -18,9 +13,9 @@ const styles = StyleSheet.create({
   },
   welcomeText: {
     fontSize: 20,
-    color: 'black',
+    color: 'white',
     fontWeight: 'bold',
-    margin: 10,
+    margin: 0,
   },
   titleList: {
     flex: 1,
@@ -54,7 +49,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
-    backgroundColor: '#ECECEC',
+    backgroundColor: theme.color.Black,
     paddingHorizontal: 15,
   },
   liveStreamButton: {
