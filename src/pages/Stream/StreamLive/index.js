@@ -35,28 +35,21 @@ class StreamLive extends React.Component {
     const { listLiveStream } = this.state;
     return (
       <Container>
-        <Test>
-          <Text style={{ color: 'black' }}>아무거나 보여줘</Text>
-          <FlatList
-            data={listLiveStream}
-            renderItem={({ item }) => <LiveStreamCard data={item} onPress={this.onPressCardItem} />}
-            keyExtractor={(item) => item._id}
-            numColumns={2}
-            contentContainerStyle={styles.flatList}
-          />
-        </Test>
+        <FlatList
+          data={listLiveStream}
+          renderItem={({ item }) => <LiveStreamCard data={item} onPress={this.onPressCardItem} />}
+          keyExtractor={(item) => item._id}
+          numColumns={2}
+          contentContainerStyle={styles.flatList}
+        />
       </Container>
+      // <Text style={{ color: 'black' }}>아무거나 보여줘</Text>
     );
   }
 }
 
 const Container = styled.View`
-  padding: 0 10px;
   margin-top: 5px;
-`;
-const Test = styled.View`
-  margin-top: -155px;
-  z-index: -100;
 `;
 
 StreamLive.propTypes = {

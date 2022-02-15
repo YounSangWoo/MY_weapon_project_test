@@ -34,7 +34,7 @@ class SavedLive extends React.Component {
   render() {
     const { listLiveStream } = this.state;
     return (
-      <View style={{ padding: 1 }}>
+      <Container>
         <FlatList
           data={listLiveStream}
           renderItem={({ item }) => <LiveStreamCard data={item} onPress={this.onPressCardItem} />}
@@ -42,10 +42,13 @@ class SavedLive extends React.Component {
           numColumns={2}
           contentContainerStyle={styles.flatList}
         />
-      </View>
+      </Container>
     );
   }
 }
+const Container = styled.View`
+  margin-top: 5px;
+`;
 
 SavedLive.propTypes = {
   route: PropTypes.shape({}),
