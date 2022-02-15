@@ -86,6 +86,10 @@ target 'LiveStreamExample' do
   add_flipper_pods!
   pod 'RNTextGradientView', :path => '../node_modules/react-native-text-gradient'
 
+  pod 'RNGestureHandler', :path => '../node_modules/react-native-gesture-handler'
+
+  pod 'react-native-safe-area-context', :path => '../node_modules/react-native-safe-area-context'
+
   post_install do |installer|
     flipper_post_install(installer)
   end

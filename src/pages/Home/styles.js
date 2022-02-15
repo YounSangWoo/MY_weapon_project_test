@@ -5,35 +5,11 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: 'white',
   },
-  // ------header-----------
-  userSpace: {
-    flex: 1,
-    flexDirection: 'row',
-    justifyContent: 'flex-end',
-  },
   welcomeText: {
     fontSize: 20,
     color: 'white',
     fontWeight: 'bold',
     margin: 0,
-  },
-  titleList: {
-    flex: 1,
-    flexDirection: 'row',
-    justifyContent: 'space-around',
-    backgroundColor: 'yellow',
-  },
-  title: {
-    fontSize: 15,
-    color: 'gray',
-    fontWeight: '700',
-    margin: 10,
-  },
-  selectedTitle: {
-    fontSize: 18,
-    color: 'black',
-    fontWeight: '700',
-    margin: 10,
   },
   // --------main card list-----------
   flatList: {
@@ -44,14 +20,7 @@ const styles = StyleSheet.create({
   },
 
   // --------footer-----------
-  footContainer: {
-    flex: 1,
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'space-between',
-    backgroundColor: theme.color.Black,
-    paddingHorizontal: 15,
-  },
+
   liveStreamButton: {
     justifyContent: 'center',
     backgroundColor: '#34495e',

@@ -1,12 +1,16 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Text, TouchableOpacity, FlatList, View } from 'react-native';
+import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
 import get from 'lodash/get';
+import { View } from 'react-native';
 import SocketManager from '../../socketManager';
-import styles from './styles';
-import LiveStreamCard from './LiveStreamCard';
 import Header from './Header';
 import Footer from './Footer';
+import Theme from '../Theme/theme';
+import SavedLive from './SavedLive';
+import LiveStreamCard from './LiveStreamCard';
+// import UpcomLive from './.UpcomLive';
+import StreamLive from './StreamLive';
 
 class Home extends React.Component {
   constructor(props) {
@@ -32,24 +36,6 @@ class Home extends React.Component {
     navigate('Login', { userName });
   };
 
-  onPressPL = () => {
-    const { route } = this.props;
-    const userName = get(route, 'params.userName', '');
-    const {
-      navigation: { navigate },
-    } = this.props;
-    navigate('Home', { userName });
-  };
-
-  onPressSL = () => {
-    const { route } = this.props;
-    const userName = get(route, 'params.userName', '');
-    const {
-      navigation: { navigate },
-    } = this.props;
-    navigate('SavedLive', { userName });
-  };
-
   onPressLiveStreamNow = () => {
     const { route } = this.props;
     const userName = get(route, 'params.userName', '');
@@ -59,38 +45,45 @@ class Home extends React.Component {
     navigate('Streamer', { userName, roomName: userName });
   };
 
-  onPressCardItem = (data) => {
-    const { route } = this.props;
-    const userName = get(route, 'params.userName', '');
-    const {
-      navigation: { navigate },
-    } = this.props;
-    navigate('Viewer', { userName, data });
-  };
-
   render() {
+    const Tab = createMaterialTopTabNavigator();
     const { route } = this.props;
     const userName = get(route, 'params.userName', '');
     const { listLiveStream } = this.state;
     return (
-      <View style={styles.container}>
-        {/* header */}
+      <>
         <Header userName={userName} />
-        {/* Cardlist */}
-        <View style={{ flex: 1 }}>
-          <FlatList
-            numColumns={2}
-            contentContainerStyle={styles.flatList}
-            data={listLiveStream}
-            renderItem={({ item }) => <LiveStreamCard data={item} onPress={this.onPressCardItem} />}
-            keyExtractor={(item) => item._id}
+        <Tab.Navigator
+          tabBarOptions={{
+            activeTintColor: Theme.color.PrettyRed,
+            inactiveTintColor: Theme.color.DarkGray,
+            indicatorStyle: {
+              borderBottomColor: Theme.color.PrettyRed,
+              borderBottomWidth: 2,
+            },
+          }}
+        >
+          <Tab.Screen
+            name="StreamLive"
+            component={StreamLive}
+            options={{ tabBarLabel: '진행중인 라이브' }}
           />
-        </View>
+          <Tab.Screen
+            name="UpcomLive"
+            component={SavedLive}
+            options={{ tabBarLabel: '다가오는 라이브' }}
+          />
+          <Tab.Screen
+            name="SavedLive"
+            component={SavedLive}
+            options={{ tabBarLabel: '지나간 라이브' }}
+          />
+        </Tab.Navigator>
         <Footer
           onPressLiveStreamNow={this.onPressLiveStreamNow}
           onPressLogout={this.onPressLogout}
         />
-      </View>
+      </>
     );
   }
 }
