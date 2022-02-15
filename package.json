@@ -58,18 +58,5 @@
   },
   "jest": {
     "preset": "react-native"
-  },
-  "description": "An example live stream rtmp application using React native",
-  "main": "index.js",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/sieuhuflit/react-native-live-stream-rtmp-example.git"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/sieuhuflit/react-native-live-stream-rtmp-example/issues"
-  },
-  "homepage": "https://github.com/sieuhuflit/react-native-live-stream-rtmp-example#readme"
+  }
 }

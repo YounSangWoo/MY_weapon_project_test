@@ -33,10 +33,19 @@ class StreamLive extends React.Component {
 
   render() {
     const { listLiveStream } = this.state;
+
+        // Only include not cancelled live streams
+    let newListLiveStream = [];
+    for (let i = 0; i < listLiveStream.length; i++) {
+      if (listLiveStream[i].liveStatus == 1) {
+        newListLiveStream.push(listLiveStream[i])
+      }
+    }
+
     return (
       <Container>
         <FlatList
-          data={listLiveStream}
+          data={newListLiveStream}
           renderItem={({ item }) => <LiveStreamCard data={item} onPress={this.onPressCardItem} />}
           keyExtractor={(item) => item._id}
           numColumns={2}

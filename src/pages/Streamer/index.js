@@ -26,6 +26,9 @@ export default class Streamer extends React.Component {
     const { route } = props;
     const roomName = get(route, 'params.roomName');
     const userName = get(route, 'params.userName', '');
+    const enteredRoomName = get(route, 'params.enteredRoomName');
+    const enteredProductLink = get(route, 'params.enteredProductLink');
+
     this.state = {
       currentLiveStatus: LIVE_STATUS.PREPARE,
       messages: [],
@@ -34,6 +37,8 @@ export default class Streamer extends React.Component {
     };
     this.roomName = roomName;
     this.userName = userName;
+    this.enteredRoomName = enteredRoomName;
+    this.enteredProductLink = enteredProductLink;
   }
 
   componentDidMount() {
@@ -41,6 +46,8 @@ export default class Streamer extends React.Component {
     SocketManager.instance.emitPrepareLiveStream({
       userName: this.userName,
       roomName: this.roomName,
+      enteredRoomName: this.enteredRoomName,
+      enteredProductLink: this.enteredProductLink,
     });
     SocketManager.instance.emitJoinRoom({
       userName: this.userName,
@@ -93,8 +100,10 @@ export default class Streamer extends React.Component {
   };
 
   onPressClose = () => {
-    const { navigation } = this.props;
-    navigation.goBack();
+    const { navigation, route } = this.props;
+    const userName = get(route, 'params.userName', '');
+    SocketManager.instance.emitCancelLiveStream({ userName, roomName: userName })
+    navigation.pop(2);
   };
 
   onPressLiveStreamButton = () => {
@@ -121,7 +130,7 @@ export default class Streamer extends React.Component {
           {
             text: 'Okay',
             onPress: () => {
-              navigation.goBack();
+              navigation.pop(2);
               SocketManager.instance.emitLeaveRoom({ userName, roomName: userName });
             },
           },

@@ -5,6 +5,7 @@ import Login from './pages/Login';
 import Home from './pages/Home';
 import Streamer from './pages/Streamer';
 import Viewer from './pages/Viewer';
+import Input from './pages/Input';
 
 const Stack = createStackNavigator();
 
@@ -19,9 +20,10 @@ class App extends Component {
             headerShown: false,
           }}
         >
-          {/* <Stack.Screen name="Login" component={Login} /> */}
-          <Stack.Screen name="Home" component={Home} />
           <Stack.Screen name="Login" component={Login} />
+          <Stack.Screen name="Home" component={Home} />
+          <Stack.Screen name="Input" component={Input} />
+          {/* <Stack.Screen name="Login" component={Login} /> */}
           <Stack.Screen name="Streamer" component={Streamer} />
           <Stack.Screen name="Viewer" component={Viewer} />
         </Stack.Navigator>

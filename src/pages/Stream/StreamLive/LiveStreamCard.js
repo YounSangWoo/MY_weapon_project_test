@@ -85,11 +85,11 @@ const LiveStreamCard = ({ data, onPress }) => {
         <Image source={require(`../../../assets/ico_live.png`)} style={styles.onLiveIcon} />
       );
       break;
-    // case LIVE_STATUS.FINISH:
-    //   statusIcon = (
-    //     <Image source={require(`../../../assets/ico_replay.png`)} style={styles.statusIcon} />
-    //   );
-    //   break;
+    case LIVE_STATUS.FINISH:
+      statusIcon = (
+        <Image source={require(`../../../assets/ico_replay.png`)} style={styles.statusIcon} />
+      );
+      break;
     default:
       statusIcon = (
         <Image source={require(`../../../assets/ico_wait.png`)} style={styles.statusIcon} />

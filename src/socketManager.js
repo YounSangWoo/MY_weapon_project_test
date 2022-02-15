@@ -11,6 +11,7 @@ const EVENT_SEND_HEART = 'send-heart';
 const EVENT_SEND_MESSAGE = 'send-message';
 const EVENT_PREPARE_LIVE_STREAM = 'prepare-live-stream';
 const EVENT_SEND_REPLAY = 'replay';
+const EVENT_CANCEL_LIVE_STREAM = 'cancel-live-stream';
 
 class SocketManager {
   socket = null;
@@ -89,14 +90,21 @@ class SocketManager {
     });
   }
 
+  listenCancelLiveStream(callback = () => null) {
+    this.socket.on(EVENT_CANCEL_LIVE_STREAM, (data) => {
+      Logger.instance.log(`${EVENT_CANCEL_LIVE_STREAM} :`, data);
+      return callback(data);
+    });
+  }
+
   //
   // ──────────────────────────────────────────────────────────── I ──────────
   //   :::::: E M I T   E V E N T : :  :   :    :     :        :          :
   // ──────────────────────────────────────────────────────────────────────
   //
 
-  emitPrepareLiveStream({ userName, roomName }) {
-    this.socket.emit(EVENT_PREPARE_LIVE_STREAM, { userName, roomName });
+  emitPrepareLiveStream({ userName, roomName, enteredRoomName, enteredProductLink }) {
+    this.socket.emit(EVENT_PREPARE_LIVE_STREAM, { userName, roomName, enteredRoomName, enteredProductLink });
   }
 
   emitJoinRoom({ userName, roomName }) {
@@ -129,6 +137,10 @@ class SocketManager {
 
   emitReplay({ roomName, userName }) {
     this.socket.emit(EVENT_SEND_REPLAY, { roomName, userName });
+  }
+
+  emitCancelLiveStream({ userName, roomName }) {
+    this.socket.emit(EVENT_CANCEL_LIVE_STREAM, { userName, roomName });
   }
 }
 

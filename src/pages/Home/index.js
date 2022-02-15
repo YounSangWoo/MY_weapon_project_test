@@ -43,7 +43,7 @@ class Home extends React.Component {
     const {
       navigation: { navigate },
     } = this.props;
-    navigate('Streamer', { userName, roomName: userName });
+    navigate('Input', { userName, roomName: userName });
   };
 
   render() {
