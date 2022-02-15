@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import PropTypes from 'prop-types';
 import {
   Text,
@@ -87,7 +87,7 @@ const LiveStreamCard = ({ data, onPress }) => {
       break;
     // case LIVE_STATUS.FINISH:
     //   statusIcon = (
-    //     <Image source={require(`../../../../assets/ico_replay.png`)} style={styles.statusIcon} />
+    //     <Image source={require(`../../../assets/ico_replay.png`)} style={styles.statusIcon} />
     //   );
     //   break;
     default:

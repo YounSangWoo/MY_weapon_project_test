@@ -1,13 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { FlatList } from 'react-native';
+import { FlatList, Text } from 'react-native';
 import get from 'lodash/get';
 import styled from 'styled-components';
+import styles from '../../Home/styles';
 import SocketManager from '../../../socketManager';
-import styles from '../styles';
 import LiveStreamCard from './LiveStreamCard';
 
-class UpcomLive extends React.Component {
+class StreamLive extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -34,30 +34,39 @@ class UpcomLive extends React.Component {
   render() {
     const { listLiveStream } = this.state;
     return (
-      <Page>
-        <FlatList
-          numColumns={2}
-          contentContainerStyle={styles.flatList}
-          data={listLiveStream}
-          renderItem={({ item }) => <LiveStreamCard data={item} onPress={this.onPressCardItem} />}
-          keyExtractor={(item) => item._id}
-        />
-      </Page>
+      <Container>
+        <Test>
+          <Text style={{ color: 'black' }}>아무거나 보여줘</Text>
+          <FlatList
+            data={listLiveStream}
+            renderItem={({ item }) => <LiveStreamCard data={item} onPress={this.onPressCardItem} />}
+            keyExtractor={(item) => item._id}
+            numColumns={2}
+            contentContainerStyle={styles.flatList}
+          />
+        </Test>
+      </Container>
     );
   }
 }
 
-const Page = styled.View`
-  padding: 10px 0 50px;
+const Container = styled.View`
+  padding: 0 10px;
+  margin-top: 5px;
 `;
-UpcomLive.propTypes = {
+const Test = styled.View`
+  margin-top: -155px;
+  z-index: -100;
+`;
+
+StreamLive.propTypes = {
   route: PropTypes.shape({}),
   navigation: PropTypes.shape({
     navigate: PropTypes.func,
   }).isRequired,
 };
 
-UpcomLive.defaultProps = {
+StreamLive.defaultProps = {
   route: null,
 };
-export default UpcomLive;
+export default StreamLive;

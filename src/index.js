@@ -19,9 +19,9 @@ class App extends Component {
             headerShown: false,
           }}
         >
-          <Stack.Screen name="Login" component={Login} />
-          <Stack.Screen name="Home" component={Home} />
           {/* <Stack.Screen name="Login" component={Login} /> */}
+          <Stack.Screen name="Home" component={Home} />
+          <Stack.Screen name="Login" component={Login} />
           <Stack.Screen name="Streamer" component={Streamer} />
           <Stack.Screen name="Viewer" component={Viewer} />
         </Stack.Navigator>

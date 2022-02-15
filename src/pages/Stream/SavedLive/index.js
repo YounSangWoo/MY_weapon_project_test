@@ -1,13 +1,13 @@
-import React from 'react';
+import * as React from 'react';
 import PropTypes from 'prop-types';
-import { FlatList } from 'react-native';
+import { FlatList, View } from 'react-native';
 import get from 'lodash/get';
 import styled from 'styled-components';
+import styles from '../../Home/styles';
 import SocketManager from '../../../socketManager';
-import styles from '../styles';
 import LiveStreamCard from './LiveStreamCard';
 
-class StreamLive extends React.Component {
+class SavedLive extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -34,30 +34,27 @@ class StreamLive extends React.Component {
   render() {
     const { listLiveStream } = this.state;
     return (
-      <Page>
+      <View style={{ padding: 1 }}>
         <FlatList
-          numColumns={2}
-          contentContainerStyle={styles.flatList}
           data={listLiveStream}
           renderItem={({ item }) => <LiveStreamCard data={item} onPress={this.onPressCardItem} />}
           keyExtractor={(item) => item._id}
+          numColumns={2}
+          contentContainerStyle={styles.flatList}
         />
-      </Page>
+      </View>
     );
   }
 }
 
-const Page = styled.View`
-  padding: 10px 0 50px;
-`;
-StreamLive.propTypes = {
+SavedLive.propTypes = {
   route: PropTypes.shape({}),
   navigation: PropTypes.shape({
     navigate: PropTypes.func,
   }).isRequired,
 };
 
-StreamLive.defaultProps = {
+SavedLive.defaultProps = {
   route: null,
 };
-export default StreamLive;
+export default SavedLive;

@@ -2,15 +2,16 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
 import get from 'lodash/get';
-import { View } from 'react-native';
+import StreamLive from '../Stream/StreamLive';
+import SavedLive from '../Stream/SavedLive';
+import Empty from '../Stream/Empty';
 import SocketManager from '../../socketManager';
 import Header from './Header';
 import Footer from './Footer';
 import Theme from '../Theme/theme';
-import SavedLive from './SavedLive';
-import LiveStreamCard from './LiveStreamCard';
+
 // import UpcomLive from './.UpcomLive';
-import StreamLive from './StreamLive';
+// import StreamLive from './StreamLive';
 
 class Home extends React.Component {
   constructor(props) {
@@ -70,7 +71,7 @@ class Home extends React.Component {
           />
           <Tab.Screen
             name="UpcomLive"
-            component={SavedLive}
+            component={Empty}
             options={{ tabBarLabel: '다가오는 라이브' }}
           />
           <Tab.Screen
